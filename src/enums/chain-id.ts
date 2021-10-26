@@ -8,8 +8,8 @@ export enum ChainId {
 }
 
 export const ChainNames = new Map<number, string>([
-  [ChainId.MAINNET, 'mainnet'],
-  [ChainId.TESTNET, 'testnet'],
+  [ChainId.MAINNET, 'Harmony Mainnet S0'],
+  [ChainId.TESTNET, 'Harmony Testnet S0'],
   [ChainId.ROPSTEN, 'ropsten'],
   [ChainId.RINKEBY, 'rinkeby'],
   [ChainId.GÖRLI, 'görli'],
