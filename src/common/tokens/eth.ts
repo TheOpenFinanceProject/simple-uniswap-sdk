@@ -52,7 +52,7 @@ export class ETH {
     return {
       chainId: ChainId.MAINNET,
       contractAddress: appendEthToContractAddress(
-        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
+        '0xc778417E063141139Fce010982780140Aa0cD5Ab'
       ),
       decimals: 18,
       symbol: ETH_SYMBOL,
