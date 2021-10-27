@@ -3,36 +3,36 @@ import { Token } from '../../factories/token/models/token';
 import { ErrorCodes } from '../errors/error-codes';
 import { UniswapError } from '../errors/uniswap-error';
 
-export const WETH_SYMBOL = 'WONE';
-export const WETH_NAME = 'Wrapped One';
+export const BBUSD_SYMBOL = 'bBUSD';
+export const BBUSD_NAME = 'Binance Smart Chain BUSD';
 
 /**
- * WETH token context (called `WETHContract` so people get a breaking changes if they use the old name of `WETH`)
+ * BBUSD token context (called `BBUSDContract` so people get a breaking changes if they use the old name of `BBUSD`)
  */
-export class WETHContract {
+export class bBUSD {
   public static MAINNET(): Token {
     return {
       chainId: ChainId.MAINNET,
-      contractAddress: '0xcF664087a5bB0237a0BAd6742852ec6c8d69A27a',
+      contractAddress: '0x0aB43550A6915F9f67d0c454C2E90385E6497EaA',
       decimals: 18,
-      symbol: WETH_SYMBOL,
-      name: WETH_NAME,
+      symbol: BBUSD_SYMBOL,
+      name: BBUSD_NAME,
     };
   }
 
   public static TESTNET(): Token {
     return {
       chainId: ChainId.TESTNET,
-      contractAddress: '0x7466d7d0c21fa05f32f5a0fa27e12bdc06348ce2',
+      contractAddress: '0xE6a72FeE7e34768661805DE2b621a8CDBe0DBc81',
       decimals: 18,
-      symbol: WETH_SYMBOL,
-      name: WETH_NAME,
+      symbol: BBUSD_SYMBOL,
+      name: BBUSD_NAME,
     };
   }
 
 
   /**
-   * Get WETH token info by chain id
+   * Get BBUSD token info by chain id
    * @param chainId The chain id
    */
   public static token(chainId: ChainId | number): Token {

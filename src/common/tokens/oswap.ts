@@ -3,36 +3,36 @@ import { Token } from '../../factories/token/models/token';
 import { ErrorCodes } from '../errors/error-codes';
 import { UniswapError } from '../errors/uniswap-error';
 
-export const WETH_SYMBOL = 'WONE';
-export const WETH_NAME = 'Wrapped One';
+export const OSWAP_SYMBOL = 'OSWAP';
+export const OSWAP_NAME = 'OSWAP';
 
 /**
- * WETH token context (called `WETHContract` so people get a breaking changes if they use the old name of `WETH`)
+ * OSWAP token context (called `OSWAPContract` so people get a breaking changes if they use the old name of `OSWAP`)
  */
-export class WETHContract {
+export class OSWAP {
   public static MAINNET(): Token {
     return {
       chainId: ChainId.MAINNET,
-      contractAddress: '0xcF664087a5bB0237a0BAd6742852ec6c8d69A27a',
+      contractAddress: '0xc0431Ddcc0D213Bf27EcEcA8C2362c0d0208c6DC',
       decimals: 18,
-      symbol: WETH_SYMBOL,
-      name: WETH_NAME,
+      symbol: OSWAP_SYMBOL,
+      name: OSWAP_NAME,
     };
   }
 
   public static TESTNET(): Token {
     return {
       chainId: ChainId.TESTNET,
-      contractAddress: '0x7466d7d0c21fa05f32f5a0fa27e12bdc06348ce2',
+      contractAddress: '0x93e07A8226b646d1C93314AB9f3b87fAfC753906',
       decimals: 18,
-      symbol: WETH_SYMBOL,
-      name: WETH_NAME,
+      symbol: OSWAP_SYMBOL,
+      name: OSWAP_NAME,
     };
   }
 
 
   /**
-   * Get WETH token info by chain id
+   * Get OSWAP token info by chain id
    * @param chainId The chain id
    */
   public static token(chainId: ChainId | number): Token {

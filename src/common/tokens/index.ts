@@ -9,4 +9,6 @@ export {
 } from './eth';
 export { USDC } from './usdc';
 export { USDT } from './usdt';
+export { bBUSD } from './bbusd';
+export { OSWAP } from './oswap';
 export { WETHContract } from './weth';
