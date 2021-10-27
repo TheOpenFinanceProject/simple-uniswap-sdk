@@ -9,7 +9,7 @@ export class UniswapContractContextV3 {
   /**
    * The uniswap factory address
    */
-  public static factoryAddress = '0x6fb89b812c757b87e4dcc638d284e8735c9229bd';
+  public static factoryAddress = '0xBdEBd3af1723BBB33A8aDB68e3e77d65D7266F59';
 
   /**
    * The uniswap quoter address

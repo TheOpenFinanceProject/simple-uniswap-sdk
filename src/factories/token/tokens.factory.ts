@@ -19,7 +19,7 @@ import { TokenWithAllowanceInfo } from './models/token-with-allowance-info';
 export class TokensFactory {
   private _multicall = new CustomMulticall(
     this._ethersProvider.provider,
-    this._customNetwork?.multicallContractAddress
+    '0x34b415f4d3b332515e66f70595ace1dcf36254c5'
   );
 
   constructor(
@@ -28,7 +28,9 @@ export class TokensFactory {
     private _cloneUniswapContractDetails?:
       | CloneUniswapContractDetails
       | undefined
-  ) {}
+  ) {
+    console.log(this._ethersProvider.provider, 'PROVIDER')
+  }
 
   /**
    * Get the tokens details
@@ -83,14 +85,14 @@ export class TokensFactory {
           );
         }
       }
-
+      console.log(contractCallContexts, 'CONTRACTCALL CONTEXT')
       const contractCallResults = await this._multicall.call(
         contractCallContexts
       );
 
       for (const result in contractCallResults.results) {
         const tokenInfo = contractCallResults.results[result];
-
+        console.log(tokenInfo, 'TOKENINFO')
         tokens.push({
           chainId: this._ethersProvider.network().chainId,
           contractAddress:
@@ -103,6 +105,7 @@ export class TokensFactory {
 
       return tokens;
     } catch (error) {
+      console.log(error)
       throw new UniswapError(
         'invalid from or to contract tokens',
         ErrorCodes.invalidFromOrToContractToken

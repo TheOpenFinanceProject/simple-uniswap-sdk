@@ -17,7 +17,7 @@ import { Token } from './models/token';
 export class TokenFactory {
   private _multicall = new CustomMulticall(
     this._ethersProvider.provider,
-    this._customNetwork?.multicallContractAddress
+    '0x34b415f4d3b332515e66f70595ace1dcf36254c5'
   );
 
   private _erc20TokenContract =
@@ -33,7 +33,9 @@ export class TokenFactory {
     private _cloneUniswapContractDetails?:
       | CloneUniswapContractDetails
       | undefined
-  ) {}
+  ) {
+    console.log(this._ethersProvider.provider, 'PROVIDER')
+  }
 
   /**
    * Get the token details

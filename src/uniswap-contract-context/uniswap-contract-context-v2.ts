@@ -9,12 +9,12 @@ export class UniswapContractContextV2 {
   /**
    * The uniswap factory address
    */
-  public static factoryAddress = '0x6fb89b812c757b87e4dcc638d284e8735c9229bd';
+  public static factoryAddress = '0xBdEBd3af1723BBB33A8aDB68e3e77d65D7266F59';
 
   /**
    * The uniswap pair address
    */
-  public static pairAddress = '0x6fb89b812c757b87e4dcc638d284e8735c9229bd';
+  public static pairAddress = '0xFdedbD274025675e17603c8A9a92Bfaa13e9d5c7';
 
   /**
    * Uniswap v2 router

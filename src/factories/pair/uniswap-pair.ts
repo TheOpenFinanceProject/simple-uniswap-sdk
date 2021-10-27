@@ -148,7 +148,6 @@ export class UniswapPair {
       this._uniswapPairContext.fromTokenContractAddress,
       this._uniswapPairContext.toTokenContractAddress,
     ]);
-
     const uniswapFactoryContext: UniswapPairFactoryContext = {
       fromToken: tokens.find(
         (t) =>
