@@ -5,9 +5,9 @@ import { ErrorCodes } from '../errors/error-codes';
 import { UniswapError } from '../errors/uniswap-error';
 import { deepClone } from '../utils/deep-clone';
 
-const ETH_PREFIX = '_ONE';
-export const ETH_SYMBOL = 'ONE';
-export const ETH_NAME = 'Ones';
+const ETH_PREFIX = '_ETH';
+export const ETH_SYMBOL = 'ETH';
+export const ETH_NAME = 'Ethers';
 
 export const appendEthToContractAddress = (contractAddress: string): string => {
   return `${contractAddress}${ETH_PREFIX}`;
@@ -31,6 +31,7 @@ export const turnTokenIntoEthForResponse = (
 ): Token => {
   const clone = deepClone(token);
   // clear down contract address
+  console.log(clone, 'TURN TOKEN INTO ETH ETH')
   clone.contractAddress = 'NO_CONTRACT_ADDRESS';
   if (nativeCurrencyInfo) {
     clone.symbol = nativeCurrencyInfo.symbol;
@@ -51,7 +52,7 @@ export class ETH {
     return {
       chainId: ChainId.MAINNET,
       contractAddress: appendEthToContractAddress(
-        '0x34b415f4d3b332515e66f70595ace1dcf36254c5'
+        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
       ),
       decimals: 18,
       symbol: ETH_SYMBOL,
@@ -59,11 +60,47 @@ export class ETH {
     };
   }
 
-  public static TESTNET(): Token {
+  public static ROPSTEN(): Token {
     return {
-      chainId: ChainId.TESTNET,
+      chainId: ChainId.ROPSTEN,
       contractAddress: appendEthToContractAddress(
-        '0xd078799c53396616844e2fa97f0dd2b4c145a685'
+        '0xc778417E063141139Fce010982780140Aa0cD5Ab'
+      ),
+      decimals: 18,
+      symbol: ETH_SYMBOL,
+      name: ETH_NAME,
+    };
+  }
+
+  public static RINKEBY(): Token {
+    return {
+      chainId: ChainId.RINKEBY,
+      contractAddress: appendEthToContractAddress(
+        '0xc778417E063141139Fce010982780140Aa0cD5Ab'
+      ),
+      decimals: 18,
+      symbol: ETH_SYMBOL,
+      name: ETH_NAME,
+    };
+  }
+
+  public static GORLI(): Token {
+    return {
+      chainId: ChainId.GÖRLI,
+      contractAddress: appendEthToContractAddress(
+        '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
+      ),
+      decimals: 18,
+      symbol: ETH_SYMBOL,
+      name: ETH_NAME,
+    };
+  }
+
+  public static KOVAN(): Token {
+    return {
+      chainId: ChainId.KOVAN,
+      contractAddress: appendEthToContractAddress(
+        '0xd0A1E359811322d97991E03f863a0C30C2cF029C'
       ),
       decimals: 18,
       symbol: ETH_SYMBOL,
@@ -90,8 +127,14 @@ export class ETH {
     switch (chainId) {
       case ChainId.MAINNET:
         return this.MAINNET();
-      case ChainId.TESTNET:
-        return this.TESTNET();
+      case ChainId.ROPSTEN:
+        return this.ROPSTEN();
+      case ChainId.RINKEBY:
+        return this.RINKEBY();
+      case ChainId.GÖRLI:
+        return this.GORLI();
+      case ChainId.KOVAN:
+        return this.KOVAN();
       default:
         throw new UniswapError(
           `${chainId} is not allowed`,
