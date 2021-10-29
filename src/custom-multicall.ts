@@ -6,8 +6,6 @@ export class CustomMulticall extends Multicall {
     ethersProvider: Provider,
     multicallCustomContractAddress?: string | undefined
   ) {
-    console.log(multicallCustomContractAddress, 'MULTI ADRESSS')
-    console.log(ethersProvider, 'MULTI Provider')
     super({
       ethersProvider,
       tryAggregate: true,

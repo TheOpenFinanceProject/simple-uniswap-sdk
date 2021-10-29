@@ -31,7 +31,6 @@ export const turnTokenIntoEthForResponse = (
 ): Token => {
   const clone = deepClone(token);
   // clear down contract address
-  console.log(clone, 'TURN TOKEN INTO ETH ETH')
   clone.contractAddress = 'NO_CONTRACT_ADDRESS';
   if (nativeCurrencyInfo) {
     clone.symbol = nativeCurrencyInfo.symbol;
@@ -52,7 +51,7 @@ export class ETH {
     return {
       chainId: ChainId.MAINNET,
       contractAddress: appendEthToContractAddress(
-        '0xc778417E063141139Fce010982780140Aa0cD5Ab'
+        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
       ),
       decimals: 18,
       symbol: ETH_SYMBOL,

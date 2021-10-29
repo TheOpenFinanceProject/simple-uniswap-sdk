@@ -2,6 +2,7 @@ import { ContractCallContext } from 'ethereum-multicall';
 import { BigNumber } from 'ethers';
 import { ContractContext as ERC20ContractContext } from '../../ABI/types/erc20-contract';
 import { ContractContext } from '../../common/contract-context';
+import { MultiCallContract } from '../../common/multicall-contract';
 import { ETH, isNativeEth } from '../../common/tokens/eth';
 import { isTokenOverrideInfo } from '../../common/tokens/overrides';
 import { getAddress } from '../../common/utils/get-address';
@@ -15,9 +16,11 @@ import { AllowanceAndBalanceOf } from './models/allowance-balance-of';
 import { Token } from './models/token';
 
 export class TokenFactory {
+  
+  private multicallContract = MultiCallContract.getContract(this._ethersProvider.network().chainId)
   private _multicall = new CustomMulticall(
     this._ethersProvider.provider,
-    '0x34b415f4d3b332515e66f70595ace1dcf36254c5'
+    this.multicallContract.contractAddress
   );
 
   private _erc20TokenContract =
@@ -34,7 +37,6 @@ export class TokenFactory {
       | CloneUniswapContractDetails
       | undefined
   ) {
-    console.log(this._ethersProvider.provider, 'PROVIDER')
   }
 
   /**

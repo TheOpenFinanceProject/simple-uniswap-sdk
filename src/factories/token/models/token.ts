@@ -6,4 +6,7 @@ export interface Token {
   decimals: number;
   symbol: string;
   name: string;
+  oneAddress?: string
+  nativeAddress?: string;
+  imgSrc?: string;
 }

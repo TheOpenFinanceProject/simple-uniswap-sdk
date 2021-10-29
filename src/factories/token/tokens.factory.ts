@@ -4,6 +4,7 @@ import { BigNumber as EthersBigNumber } from 'ethers';
 import { ContractContext } from '../../common/contract-context';
 import { ErrorCodes } from '../../common/errors/error-codes';
 import { UniswapError } from '../../common/errors/uniswap-error';
+import { MultiCallContract } from '../../common/multicall-contract';
 import { ETH, isNativeEth } from '../../common/tokens/eth';
 import { isTokenOverrideInfo } from '../../common/tokens/overrides';
 import { getAddress } from '../../common/utils/get-address';
@@ -17,9 +18,11 @@ import { Token } from './models/token';
 import { TokenWithAllowanceInfo } from './models/token-with-allowance-info';
 
 export class TokensFactory {
+  [x: string]: any;
+  private multicallContract = MultiCallContract.getContract(this._ethersProvider.network().chainId)
   private _multicall = new CustomMulticall(
     this._ethersProvider.provider,
-    '0x34b415f4d3b332515e66f70595ace1dcf36254c5'
+    this.multicallContract.contractAddress
   );
 
   constructor(
@@ -29,7 +32,6 @@ export class TokensFactory {
       | CloneUniswapContractDetails
       | undefined
   ) {
-    console.log(this._ethersProvider.provider, 'PROVIDER')
   }
 
   /**
@@ -85,14 +87,12 @@ export class TokensFactory {
           );
         }
       }
-      console.log(contractCallContexts, 'CONTRACTCALL CONTEXT')
       const contractCallResults = await this._multicall.call(
         contractCallContexts
       );
 
       for (const result in contractCallResults.results) {
         const tokenInfo = contractCallResults.results[result];
-        console.log(tokenInfo, 'TOKENINFO')
         tokens.push({
           chainId: this._ethersProvider.network().chainId,
           contractAddress:
@@ -102,10 +102,8 @@ export class TokensFactory {
           name: tokenInfo.callsReturnContext[NAME].returnValues[0],
         });
       }
-
       return tokens;
     } catch (error) {
-      console.log(error)
       throw new UniswapError(
         'invalid from or to contract tokens',
         ErrorCodes.invalidFromOrToContractToken
